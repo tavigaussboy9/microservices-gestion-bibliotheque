@@ -1,5 +1,6 @@
 version: '3'
 services:
+  # Service for managing books
   books:
     build:
       context: ./books
@@ -8,6 +9,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/books
 
+  # Service for managing loans
   loans:
     build:
       context: ./loans
@@ -16,17 +18,20 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/loans
 
+  # Service for sending notifications
   notifications:
     build:
       context: ./notifications
     ports:
       - '3003:3000'
 
+  # MongoDB database service
   mongo:
     image: mongo
     ports:
       - '27017:27017'
 
+  # RabbitMQ messaging service with management UI
   rabbitmq:
     image: rabbitmq:3-management
     ports:
