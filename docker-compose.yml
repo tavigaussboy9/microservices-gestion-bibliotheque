@@ -1,0 +1,34 @@
+version: '3'
+services:
+  books:
+    build:
+      context: ./books
+    ports:
+      - '3001:3000'
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/books
+
+  loans:
+    build:
+      context: ./loans
+    ports:
+      - '3002:3000'
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/loans
+
+  notifications:
+    build:
+      context: ./notifications
+    ports:
+      - '3003:3000'
+
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - '15672:15672'
+      - '5672:5672'
