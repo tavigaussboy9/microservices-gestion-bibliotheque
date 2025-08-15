@@ -1,3 +1,4 @@
+# Fichiers et répertoires à ignorer par Git
 node_modules/
 .env
 .DS_Store
